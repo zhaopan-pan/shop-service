@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.imooc.demo.dao.AreaDao">
+    <!--查询列表-->
+    <select id="queryArea" resultType="com.imooc.demo.entity.Area">
+        SELECT
+        area_id ,area_name,priority,create_time,last_edit_time
+        FROM td_area
+--       排序依据
+        order by priority
+--         降序
+        DESC
+    </select>
+    <!--查询单条-->
+    <select id="queryAreaId"  resultType="com.imooc.demo.entity.Area">
+        SELECT
+        area_id ,area_name,priority,create_time,last_edit_time
+        FROM td_area
+        WHERE
+        area_id=#{areaId}
+    </select>
+    <!--插入数据（useGeneratedKeys:如果insert成功返回主键值areaId 对应数据库列就是area_id）-->
+    <insert id="insertArea" useGeneratedKeys="true" keyProperty="areaId"
+            keyColumn="area_id" parameterType="com.imooc.demo.entity.Area">
+        INSERT INTO
+        td_area(area_name,priority,create_time,last_edit_time)
+        VALUE
+--         如果Area里面有子类person，可以用person.name来取值
+        (#{areaName},#{priority},#{createTime},#{lastEditTime})
+    </insert>
+
+    <!--修改-->
+    <update id="updataArea" parameterType="com.imooc.demo.entity.Area">
+        UPDATE td_area
+--         set里面可以做判断
+        <set>
+            <if test="areaName!=null">area_name=#{areaName},</if>
+            <if test="priority!=null">priority=#{priority},</if>
+            <if test="lastEditTime!=null">last_edit_time=#{lastEditTime},</if>
+        </set>
+        WHERE
+        area_id=#{areaId}
+    </update>
+
+    <!--删除-->
+    <delete id="deleteArea">
+        DELETE FROM
+        td_area
+        WHERE
+        area_id=
+        #{areaId}
+    </delete>
+
+</mapper>
