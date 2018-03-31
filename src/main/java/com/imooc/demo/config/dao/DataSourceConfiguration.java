@@ -1,7 +1,6 @@
 package com.imooc.demo.config.dao;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
-import org.apache.ibatis.type.MappedTypes;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -20,7 +19,7 @@ public class DataSourceConfiguration {
     private String jdbcDriver;
     @Value("${jdbc.url}")
     private String jdbcUrl;
-    @Value("${jdbc.userName}")
+    @Value("${jdbc.username}")
     private String jdbcUserName;
     @Value("${jdbc.password}")
     private String jdbcPassword;

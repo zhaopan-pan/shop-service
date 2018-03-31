@@ -1,23 +1,24 @@
-package com.imooc.demo.dao;
-
-import java.util.List;
+package com.imooc.demo.service;
 
 import com.imooc.demo.entity.Area;
 
-public interface AreaDao {
+import java.util.List;
+
+public interface AreaService {
+
     /**
      * 列出区域列表
      *
      * @return areaList
      */
-    List<Area> queryArea();
+    List<Area> getAreaList();
 
     /**
      * 根据Id列出具体区域
      *
      * @return area
      */
-    Area queryAreaById(int areaId);
+    Area getAreaById(int areaId);
 
     /**
      * 插入区域信息
@@ -25,7 +26,7 @@ public interface AreaDao {
      * @param area
      * @return
      */
-    int insertArea(Area area);
+    boolean addArea(Area area);
 
     /**
      * 更新区域信息
@@ -33,7 +34,7 @@ public interface AreaDao {
      * @param area
      * @return
      */
-    int updateArea(Area area);
+    boolean modifyArea(Area area);
 
     /**
      * 删除区域信息
@@ -41,5 +42,5 @@ public interface AreaDao {
      * @param areaId
      * @return
      */
-    int deleteArea(int areaId);
+    boolean deleteArea(int areaId);
 }

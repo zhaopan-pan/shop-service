@@ -1,61 +1,65 @@
 package com.imooc.demo.entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import java.util.Date;
 
+/**
+ * 区域信息
+ * @author xiangze
+ *
+ */
+//@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 public class Area {
-    //主键
+    // 主键ID
     private Integer areaId;
-    //名称
+    // 名称
     private String areaName;
-    //权重，越大越靠前显示
+    // 权重，越大越排前显示
     private Integer priority;
-    //创建时间
-    private Date createDate;
-    //更新时间
-    private Date LastEidtTime;
+    // 创建时间
+    private Date createTime;
+    // 更新时间
+    private Date lastEditTime;
 
     public Integer getAreaId() {
         return areaId;
     }
 
-    public Area setAreaId(Integer areaId) {
+    public void setAreaId(Integer areaId) {
         this.areaId = areaId;
-        return this;
     }
 
     public String getAreaName() {
         return areaName;
     }
 
-    public Area setAreaName(String areaName) {
+    public void setAreaName(String areaName) {
         this.areaName = areaName;
-        return this;
     }
 
     public Integer getPriority() {
         return priority;
     }
 
-    public Area setPriority(Integer priority) {
+    public void setPriority(Integer priority) {
         this.priority = priority;
-        return this;
     }
 
-    public Date getCreateDate() {
-        return createDate;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public Area setCreateDate(Date createDate) {
-        this.createDate = createDate;
-        return this;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
-    public Date getLastEidtTime() {
-        return LastEidtTime;
+    public Date getLastEditTime() {
+        return lastEditTime;
     }
 
-    public Area setLastEidtTime(Date lastEidtTime) {
-        LastEidtTime = lastEidtTime;
-        return this;
+    public void setLastEditTime(Date lastEditTime) {
+        this.lastEditTime = lastEditTime;
     }
+
 }
