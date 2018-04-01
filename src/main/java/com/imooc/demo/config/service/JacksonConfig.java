@@ -18,6 +18,7 @@ public class JacksonConfig {
     @Bean
     @Primary
     @ConditionalOnMissingBean(ObjectMapper.class)
+    //将null转空字符串
     public ObjectMapper jacksonObjectMapper(Jackson2ObjectMapperBuilder builder) {
         ObjectMapper objectMapper = builder.createXmlMapper(false).build();
         objectMapper.getSerializerProvider().setNullValueSerializer(new JsonSerializer<Object>() {

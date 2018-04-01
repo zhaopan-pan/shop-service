@@ -1,15 +1,7 @@
 package com.imooc.demo.entity;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
 import java.util.Date;
 
-/**
- * 区域信息
- * @author xiangze
- *
- */
-//@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 public class Area {
     // 主键ID
     private Integer areaId;
@@ -61,5 +53,4 @@ public class Area {
     public void setLastEditTime(Date lastEditTime) {
         this.lastEditTime = lastEditTime;
     }
-
 }

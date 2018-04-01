@@ -23,9 +23,11 @@ public class AreaController {
      * 获取列表
      * @return
      */
-    @RequestMapping(value = "/arealist",method = RequestMethod.GET)
+    @RequestMapping(value = "/arealist",method = RequestMethod.POST)
     private Map<String,Object> ListArea(){
-        //实例化map,
+        //实例化map(键值对),
+        Map<String,Object> finalMap=new HashMap<String,Object>();
+        Map<String,Object> msgMap=new HashMap<String,Object>();
         Map<String,Object> modelMap=new HashMap<String,Object>();
         //获取列表
         List<Area> list=areaService.getAreaList();
@@ -33,8 +35,17 @@ public class AreaController {
 //
 //        }
         //向map里面put放入list
-        modelMap.put("areaList",list);
-        return modelMap;
+        if(list==null||list.size()==0){
+            finalMap.put("msg","暂无数据");
+            finalMap.put("code",0);
+        }else{
+            msgMap.put("areaList",list);
+            finalMap.put("code",1);
+            finalMap.put("msg","查询成功");
+            finalMap.put("dataList",msgMap);
+//            finalMap.put("dataList",modelMap);
+        }
+        return finalMap;
     }
 
     @RequestMapping(value = "/getareabyid",method = RequestMethod.GET)
