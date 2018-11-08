@@ -2,11 +2,11 @@ package com.imooc.huayujun.config.wxPay;
 
 public class WxPayConfig {
     //小程序appid
-    public static final String appId="wx597151a7ab053b10";
+    public static final String appId="wxcc53ab401086580a";
     //微信支付的商户id
-    public static final String mchId="1465105202";
+    public static final String mchId="1514907401";
     //小程序密钥
-    public static final String secret="bddb25b94eccb3666e7f29981b67d720";
+    public static final String secret="df27ecc1fc6075dc5d9cd7fb04f1ab49";
     //code 换取 session_key中类别
     public static final String grantType="authorization_code";
     //支付成功后的服务器回调url

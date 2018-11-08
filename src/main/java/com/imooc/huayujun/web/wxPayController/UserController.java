@@ -1,4 +1,4 @@
-package com.imooc.huayujun.web;
+package com.imooc.huayujun.web.wxPayController;
 
 import com.alibaba.fastjson.JSONObject;
 import com.imooc.huayujun.config.wxPay.WxPayConfig;
@@ -7,6 +7,7 @@ import com.imooc.huayujun.utils.PayUtil;
 import com.imooc.huayujun.vo.AccessToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.ServletInputStream;
@@ -68,7 +69,7 @@ public class UserController {
         out.close();
     }
 
-    @RequestMapping(value="/onLogin")
+    @RequestMapping(value="/onLogin",method = RequestMethod.POST)
     @ResponseBody
     public Map<String,Object> onLogin(String code){
         System.out.print("==============");
@@ -77,9 +78,15 @@ public class UserController {
         String url=WxPayConfig.getSessionKeyUrl+"?appid="+ WxPayConfig.appId+
                 "&secret="+WxPayConfig.secret+"&js_code="+code+"&grant_type="+WxPayConfig.grantType;
         JSONObject httpResult=HttpUtils.httpGet(url);
-        result.put("openid",httpResult.get("openid"));
-        result.put("session_key",httpResult.get("session_key"));
-        result.put("expires_in",httpResult.get("expires_in"));
+        if(httpResult!=null){
+            result.put("openid",httpResult.get("openid"));
+            result.put("session_key",httpResult.get("session_key"));
+            result.put("expires_in",httpResult.get("expires_in"));
+        }else{
+            result.put("code",httpResult.get("-1"));
+            result.put("msg",httpResult.get("获取openid失败"));
+        }
+        System.out.print(result);
         return  result;
     }
 }
