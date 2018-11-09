@@ -49,16 +49,15 @@ public class OrderController {
     @RequestMapping(value="/createOrder")
     @ResponseBody
     public Map<String,Object> createOrder(String openId){
+        System.out.print("-------------");
+        System.out.print(openId);
         Map<String,Object>result=new HashMap<>();
 
         String formData=orderService.commitData(openId);
         String httpResult = HttpUtils.httpXMLPost(WxPayConfig.createOrderUrl,formData);  //调用统一下单接口
         try {
             Map<String, String> resultMap = WXPayUtil.xmlToMap(httpResult);
-            System.out.print("=============");
-            System.out.print(resultMap);
-            System.out.print("=============");
-            if(resultMap.get("return_msg")==""){
+            if(resultMap.get("return_msg").equals("OK")){
                 result.put("code","1");
                 result.put("package", "prepay_id=" + resultMap.get("prepay_id"));   //获取prepay_id并放入map
                 result.put("nonceStr",resultMap.get("nonce_str"));

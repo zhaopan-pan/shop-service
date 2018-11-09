@@ -12,7 +12,7 @@ public class WxPayConfig {
     //支付成功后的服务器回调url
     public static final String notify_url="https:www.wolzq.com/weixin/API/Order/notify";
     //微信支付的商户密钥
-    public static final String key="xinshijie123456789XINSHIJIE12345";
+    public static final String key="huayujun123104536130413677666097";
     //交易类型，小程序支付的固定值为JSAPI
     public static final String tradeType="JSAPI";
     //签名方式，固定值

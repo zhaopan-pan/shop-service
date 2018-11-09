@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -75,13 +76,16 @@ public class UserController {
         System.out.print("==============");
         System.out.print(code);
         Map<String,Object>result=new HashMap<>();
+//        ArrayList list=new ArrayList( )
         String url=WxPayConfig.getSessionKeyUrl+"?appid="+ WxPayConfig.appId+
                 "&secret="+WxPayConfig.secret+"&js_code="+code+"&grant_type="+WxPayConfig.grantType;
         JSONObject httpResult=HttpUtils.httpGet(url);
         if(httpResult!=null){
+//            results.put("dataList","123456");
             result.put("openid",httpResult.get("openid"));
             result.put("session_key",httpResult.get("session_key"));
             result.put("expires_in",httpResult.get("expires_in"));
+//            result.put("dataList",results);
         }else{
             result.put("code",httpResult.get("-1"));
             result.put("msg",httpResult.get("获取openid失败"));
